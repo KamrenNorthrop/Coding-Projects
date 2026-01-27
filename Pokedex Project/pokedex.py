@@ -345,7 +345,7 @@ What would you like to do?
     def shop_prompt(self):
             #1 = pokeball, 2 = greatball, 3 = ultraball
         item_prices = {
-            "1": 9.99,
+            "1": 5.99,
             "2": 49.99,
             "3": 99.99,
         }
