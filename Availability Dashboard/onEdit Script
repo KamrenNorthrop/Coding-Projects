@@ -1,0 +1,38 @@
+To add click: Extensions -> App Scripts
+
+function onEdit(e) {
+  var sheet = e.source.getActiveSheet();
+  var sheetName = sheet.getName();
+  
+  // Only track provider sheets
+  var providers = ["Alissa","Aaron","Damaris","Erica","Jeff","Logan","Liz"];
+  
+  if (providers.indexOf(sheetName) !== -1) {
+    var dashboardSheet = e.source.getSheetByName("Last Edited");
+    
+    // Find the row corresponding to the provider
+    var providerRow = providers.indexOf(sheetName) + 2; // +2 because headers are in row 1
+    
+    // Update column B with the current date
+    var now = new Date();
+    dashboardSheet.getRange("B" + providerRow).setValue(now);
+    
+    // COPY ENTIRE Last Edited TAB TO ANOTHER SPREADSHEET
+    var TARGET_SPREADSHEET_ID = "PUT BACKUP SPREADSHEET URL HERE";
+    var targetSpreadsheet = SpreadsheetApp.openById(TARGET_SPREADSHEET_ID);
+    
+    // Check if "Last Edited" exists in the target sheet
+    var targetSheet = targetSpreadsheet.getSheetByName("Last Edited");
+    if (!targetSheet) {
+      // Create the tab if it doesn't exist
+      targetSheet = targetSpreadsheet.insertSheet("Last Edited");
+    } else {
+      // Clear existing data
+      targetSheet.clearContents();
+    }
+    
+    // Copy all data from source Last Edited
+    var sourceData = dashboardSheet.getDataRange().getValues();
+    targetSheet.getRange(1, 1, sourceData.length, sourceData[0].length).setValues(sourceData);
+  }
+}

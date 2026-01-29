@@ -1,0 +1,91 @@
+AVAILABILITY FORMULA
+
+=IF(
+   AND(
+     Erica!B2=FALSE, Erica!C2=FALSE,
+     Erica!D2=FALSE, Erica!E2=FALSE,
+     Erica!F2=FALSE, Erica!G2=FALSE,
+     Erica!H2=FALSE, Erica!I2=FALSE,
+     Erica!J2=FALSE, Erica!K2=FALSE
+   ),
+   "No times are available",
+   TEXTJOIN(CHAR(10), TRUE,
+
+     IF(AND(Erica!B2=FALSE, Erica!C2=FALSE), "Monday: No times available",
+        IF(Erica!B2, "Monday AM: " & Erica!B3, "") &
+        IF(Erica!C2, CHAR(10) & "Monday PM: " & Erica!C3, "")
+     ),
+     "--------------------------------------------------------",
+
+     IF(AND(Erica!D2=FALSE, Erica!E2=FALSE), "Tuesday: No times available",
+        IF(Erica!D2, "Tuesday AM: " & Erica!D3, "") &
+        IF(Erica!E2, CHAR(10) & "Tuesday PM: " & Erica!E3, "")
+     ),
+     "--------------------------------------------------------",
+
+     IF(AND(Erica!F2=FALSE, Erica!G2=FALSE), "Wednesday: No times available",
+        IF(Erica!F2, "Wednesday AM: " & Erica!F3, "") &
+        IF(Erica!G2, CHAR(10) & "Wednesday PM: " & Erica!G3, "")
+     ),
+     "--------------------------------------------------------",
+
+     IF(AND(Erica!H2=FALSE, Erica!I2=FALSE), "Thursday: No times available",
+        IF(Erica!H2, "Thursday AM: " & Erica!H3, "") &
+        IF(Erica!I2, CHAR(10) & "Thursday PM: " & Erica!I3, "")
+     ),
+     "--------------------------------------------------------",
+
+     IF(AND(Erica!J2=FALSE, Erica!K2=FALSE), "Friday: No times available",
+        IF(Erica!J2, "Friday AM: " & Erica!J3, "") &
+        IF(Erica!K2, CHAR(10) & "Friday PM: " & Erica!K3, "")
+     )
+   )
+)
+
+NOTES FOR DAY FORMULA
+
+=IF(
+   AND(
+     Erica!B4="", Erica!C4="",
+     Erica!D4="", Erica!E4="",
+     Erica!F4="", Erica!G4="",
+     Erica!H4="", Erica!I4="",
+     Erica!J4="", Erica!K4=""
+   ),
+   "No notes reported",
+   TEXTJOIN(CHAR(10), TRUE,
+
+     IF(AND(Erica!B4="", Erica!C4=""), "Monday: No notes available",
+        IF(Erica!B4<>"", "Monday AM: " & Erica!B4, "") &
+        IF(Erica!C4<>"", CHAR(10) & "Monday PM: " & Erica!C4, "")
+     ),
+     "--------------------------------------------------------",
+
+     IF(AND(Erica!D4="", Erica!E4=""), "Tuesday: No notes available",
+        IF(Erica!D4<>"", "Tuesday AM: " & Erica!D4, "") &
+        IF(Erica!E4<>"", CHAR(10) & "Tuesday PM: " & Erica!E4, "")
+     ),
+     "--------------------------------------------------------",
+
+     IF(AND(Erica!F4="", Erica!G4=""), "Wednesday: No notes available",
+        IF(Erica!F4<>"", "Wednesday AM: " & Erica!F4, "") &
+        IF(Erica!G4<>"", CHAR(10) & "Wednesday PM: " & Erica!G4, "")
+     ),
+     "--------------------------------------------------------",
+
+     IF(AND(Erica!H4="", Erica!I4=""), "Thursday: No notes available",
+        IF(Erica!H4<>"", "Thursday AM: " & Erica!H4, "") &
+        IF(Erica!I4<>"", CHAR(10) & "Thursday PM: " & Erica!I4, "")
+     ),
+     "--------------------------------------------------------",
+
+     IF(AND(Erica!J4="", Erica!K4=""), "Friday: No notes available",
+        IF(Erica!J4<>"", "Friday AM: " & Erica!J4, "") &
+        IF(Erica!K4<>"", CHAR(10) & "Friday PM: " & Erica!K4, "")
+     )
+   )
+)
+
+GENERAL NOTES FORMULA
+
+=IF(LEN(Erica!B5)=0, "No general notes reported", Erica!B5)

@@ -1,0 +1,91 @@
+AVAILABILITY FORMULA
+
+=IF(
+   AND(
+     Damaris!B2=FALSE, Damaris!C2=FALSE,
+     Damaris!D2=FALSE, Damaris!E2=FALSE,
+     Damaris!F2=FALSE, Damaris!G2=FALSE,
+     Damaris!H2=FALSE, Damaris!I2=FALSE,
+     Damaris!J2=FALSE, Damaris!K2=FALSE
+   ),
+   "No current availability",
+   TEXTJOIN(CHAR(10), TRUE,
+
+     IF(AND(Damaris!B2=FALSE, Damaris!C2=FALSE), "Monday: No times available",
+        IF(Damaris!B2, "Monday AM: " & Damaris!B3, "") &
+        IF(Damaris!C2, CHAR(10) & "Monday PM: " & Damaris!C3, "")
+     ),
+     "--------------------------------------------------------",
+
+     IF(AND(Damaris!D2=FALSE, Damaris!E2=FALSE), "Tuesday: No times available",
+        IF(Damaris!D2, "Tuesday AM: " & Damaris!D3, "") &
+        IF(Damaris!E2, CHAR(10) & "Tuesday PM: " & Damaris!E3, "")
+     ),
+     "--------------------------------------------------------",
+
+     IF(AND(Damaris!F2=FALSE, Damaris!G2=FALSE), "Wednesday: No times available",
+        IF(Damaris!F2, "Wednesday AM: " & Damaris!F3, "") &
+        IF(Damaris!G2, CHAR(10) & "Wednesday PM: " & Damaris!G3, "")
+     ),
+     "--------------------------------------------------------",
+
+     IF(AND(Damaris!H2=FALSE, Damaris!I2=FALSE), "Thursday: No times available",
+        IF(Damaris!H2, "Thursday AM: " & Damaris!H3, "") &
+        IF(Damaris!I2, CHAR(10) & "Thursday PM: " & Damaris!I3, "")
+     ),
+     "--------------------------------------------------------",
+
+     IF(AND(Damaris!J2=FALSE, Damaris!K2=FALSE), "Friday: No times available",
+        IF(Damaris!J2, "Friday AM: " & Damaris!J3, "") &
+        IF(Damaris!K2, CHAR(10) & "Friday PM: " & Damaris!K3, "")
+     )
+   )
+)
+
+NOTES FOR DAY FORMULA
+
+=IF(
+   AND(
+     Damaris!B4="", Damaris!C4="",
+     Damaris!D4="", Damaris!E4="",
+     Damaris!F4="", Damaris!G4="",
+     Damaris!H4="", Damaris!I4="",
+     Damaris!J4="", Damaris!K4=""
+   ),
+   "No notes reported",
+   TEXTJOIN(CHAR(10), TRUE,
+
+     IF(AND(Damaris!B4="", Damaris!C4=""), "Monday: No notes available",
+        IF(Damaris!B4<>"", "Monday AM: " & Damaris!B4, "") &
+        IF(Damaris!C4<>"", CHAR(10) & "Monday PM: " & Damaris!C4, "")
+     ),
+     "--------------------------------------------------------",
+
+     IF(AND(Damaris!D4="", Damaris!E4=""), "Tuesday: No notes available",
+        IF(Damaris!D4<>"", "Tuesday AM: " & Damaris!D4, "") &
+        IF(Damaris!E4<>"", CHAR(10) & "Tuesday PM: " & Damaris!E4, "")
+     ),
+     "--------------------------------------------------------",
+
+     IF(AND(Damaris!F4="", Damaris!G4=""), "Wednesday: No notes available",
+        IF(Damaris!F4<>"", "Wednesday AM: " & Damaris!F4, "") &
+        IF(Damaris!G4<>"", CHAR(10) & "Wednesday PM: " & Damaris!G4, "")
+     ),
+     "--------------------------------------------------------",
+
+     IF(AND(Damaris!H4="", Damaris!I4=""), "Thursday: No notes available",
+        IF(Damaris!H4<>"", "Thursday AM: " & Damaris!H4, "") &
+        IF(Damaris!I4<>"", CHAR(10) & "Thursday PM: " & Damaris!I4, "")
+     ),
+     "--------------------------------------------------------",
+
+     IF(AND(Damaris!J4="", Damaris!K4=""), "Friday: No notes available",
+        IF(Damaris!J4<>"", "Friday AM: " & Damaris!J4, "") &
+        IF(Damaris!K4<>"", CHAR(10) & "Friday PM: " & Damaris!K4, "")
+     )
+   )
+)
+
+GENERAL NOTES FORMULA
+
+=IF(LEN(Damaris!B5)=0, "No general notes reported", Damaris!B5)
