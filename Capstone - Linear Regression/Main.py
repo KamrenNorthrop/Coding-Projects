@@ -88,9 +88,14 @@ def main():
 
         #Calcuate upper and lower range considering the MAE
         lower_range = outcome - mae
+        upper_range = outcome + mae
+
+        #Accounting for a unrealistic outcome / lower range predicton.
+        if outcome < 0:
+            outcome = 0
+        
         if lower_range < 0:
             lower_range = 0
-        upper_range = outcome + mae
 
         #Print prediction and the range
         print(f"Your predicted annual cost: ${outcome:.2f}\n")
