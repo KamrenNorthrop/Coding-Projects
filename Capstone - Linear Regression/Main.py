@@ -1,7 +1,9 @@
 from linear_regression import LinearRegression
+import matplotlib.pyplot as plot
 
 def main():
-    print("Welcome - Please wait a moment while we load, clean, process the data and train the model")
+    print("Welcome - Please wait a moment while we load, clean, process the data and train the model\n")
+    print("Once we have received your answers, we will show you the breakdown in a console dashboard\n")
     model = LinearRegression()
 
     #Load data
@@ -21,8 +23,6 @@ def main():
 
     #Evaluate
     r2, mae = model.evaluate_model()
-    print(f"R2 : {r2:.3f}")
-    print(f"MAE : {mae:.2f}")
 
     #Get user data to make a prediction
     making_prediction = True
@@ -98,12 +98,24 @@ def main():
             lower_range = 0
 
         #Print prediction and the range
+        print("\n------ MODEL DASHBOARD ------\n")
+
+        print("\n --- Model Performance ---")
+        print(f"R2 : {r2:.3f}")
+        print(f"MAE : {mae:.2f}")
+
+        print("\n --- Model Prediction Range ---")
         print(f"Your predicted annual cost: ${outcome:.2f}\n")
         print(f"Your predicted annual cost range considering the MAE:\nLower bound: ${lower_range:.2f} \nUpper bound: ${upper_range:.2f}")
+
+        print("\n --- Data Statistics ---")
         model.describe_stats()
+
+        print("\n --- Data Visualizations (See pop ups) ---")
         model.prediction_range_plot(outcome, lower_range, upper_range)
         model.bmi_plot()
         model.smoker_vs_charges_bar_chart()
+        plot.show()
 
         #Does the user want to make another prediction?
         accepted = ["yes", "y"]
@@ -111,6 +123,7 @@ def main():
         if again.lower() in accepted:
             continue
         else:
+            print("Goodbye!")
             break
 
 if __name__ == "__main__":

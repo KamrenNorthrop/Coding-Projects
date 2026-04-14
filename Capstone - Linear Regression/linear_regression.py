@@ -66,7 +66,7 @@ class LinearRegression:
         self.model = SkLinearRegression()
         self.model.fit(self.x_train, self.y_train)
 
-        print("Model trained")
+        print("Model trained\n")
 
     def evaluate_model(self):
         if self.model is None:
@@ -136,7 +136,6 @@ class LinearRegression:
         plot.title("Your Prediction vs Real Data")
         plot.xlabel("Charges")
         plot.ylabel("Frequency")
-        plot.show()
 
     def bmi_plot(self):
         if self.df is None:
@@ -151,7 +150,6 @@ class LinearRegression:
         plot.title("Average Charges By BMI Range")
         plot.xlabel("BMI Range")
         plot.ylabel("Average Charges")
-        plot.show()
 
     def smoker_vs_charges_bar_chart(self):
         if self.df is None:
@@ -165,4 +163,3 @@ class LinearRegression:
         plot.title("Average Insurance Charges By Smoking Status")
         plot.xlabel("Smoking status")
         plot.ylabel("Average Charges")
-        plot.show()
