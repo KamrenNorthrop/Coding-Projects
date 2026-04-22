@@ -1,9 +1,13 @@
+'''
+D964 - Capstone
+Name: Kamren Northrop
+Student ID: 011338614 
+'''
 from linear_regression import LinearRegression
 import matplotlib.pyplot as plot
 
 def main():
-    print("Welcome - Please wait a moment while we load, clean, process the data and train the model\n")
-    print("Once we have received your answers, we will show you the breakdown in a console dashboard\n")
+    print("Welcome - Please wait a moment while we load, clean, process the data and train the model\n", flush=True)
     model = LinearRegression()
 
     #Load data
@@ -28,6 +32,7 @@ def main():
     making_prediction = True
     while making_prediction:
         while True:
+            #Get user age, make sure it's an int
             try:
                 age = int(input("What is your age? "))
                 if age <= 0:
@@ -37,6 +42,7 @@ def main():
             except ValueError:
                 print("Please enter a valid numeric age")
 
+        #Get user BMI, make sure it's a float
         while True:
             try:
                 bmi = float(input("What is your BMI? "))
@@ -47,6 +53,7 @@ def main():
             except ValueError:
                 print("Please enter a valid numeric BMI")
 
+        #Get user number of children, make sure it's greater then 0 and an int
         while True:
             try:
                 children = int(input("How many children do you have? "))
@@ -57,6 +64,7 @@ def main():
             except ValueError:
                 print("Please enter a valid numeric integer for children")
 
+        #Get user sex, ensure it can be used to make a prediction
         while True:
             sex = input("Are you male or female? (male/female) ").lower()
             valid_input_for_sex = ["male", "female"]
@@ -64,7 +72,8 @@ def main():
                 print("Please enter either male or female")
                 continue
             break
-
+        
+        #Get user smoking status, ensure it can be used to make a prediction
         while True:
             smoking_status = input("Do you smoke? (yes/no) ").lower()
             valid_input_for_smoking = ["yes", "no"]
@@ -72,7 +81,8 @@ def main():
                 print("Please enter either yes or no.")
                 continue
             break
-
+        
+        #Get user region, ensure it's a valid region
         while True:
             region = input("What region are you from? (NW, NE, SW, SE) ").lower()
             valid_input_for_region = ["nw", "ne", "sw", "se"]
@@ -80,7 +90,8 @@ def main():
                 print("Please enter a valid region: nw, ne, sw, se.")
                 continue
             break
-
+        
+        #Make a prediction using user information, ensure a prediction was returned 
         outcome = model.make_prediction(age, bmi, children, sex, smoking_status, region)
         if outcome is None:
             print("No prediction made, try again")
@@ -97,20 +108,24 @@ def main():
         if lower_range < 0:
             lower_range = 0
 
-        #Print prediction and the range
+        #Print console-based dashboard after prediction is returned
         print("\n------ MODEL DASHBOARD ------\n")
 
+        #Show model performance metrics
         print("\n --- Model Performance ---")
-        print(f"R2 : {r2:.3f}")
+        print(f"R2 : {r2:.2f}")
         print(f"MAE : {mae:.2f}")
 
+        #Show prediction and lower/upper range
         print("\n --- Model Prediction Range ---")
         print(f"Your predicted annual cost: ${outcome:.2f}\n")
         print(f"Your predicted annual cost range considering the MAE:\nLower bound: ${lower_range:.2f} \nUpper bound: ${upper_range:.2f}")
 
+        #Show data statistics
         print("\n --- Data Statistics ---")
         model.describe_stats()
-
+        
+        #Show all 3 visualizations
         print("\n --- Data Visualizations (See pop ups) ---")
         model.prediction_range_plot(outcome, lower_range, upper_range)
         model.bmi_plot()
